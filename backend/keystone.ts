@@ -6,6 +6,7 @@ import {
   statelessSessions,
 } from '@keystone-next/keystone/session';
 import { User } from './schemas/User';
+import { Product } from './schemas/Product';
 
 const databaseURL =
   process.env.DATABESE_URL || 'mongodb://localhost/keystone-randomica-store';
@@ -41,6 +42,7 @@ export default withAuth(
     lists: createSchema({
       // schema items
       User,
+      Product,
     }),
     ui: {
       isAccessAllowed: ({ session }): boolean => !!session?.data,

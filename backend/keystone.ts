@@ -7,6 +7,7 @@ import {
 } from '@keystone-next/keystone/session';
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
+import { ProductImage } from './schemas/ProductImage';
 
 const databaseURL =
   process.env.DATABESE_URL || 'mongodb://localhost/keystone-randomica-store';
@@ -43,6 +44,7 @@ export default withAuth(
       // schema items
       User,
       Product,
+      ProductImage,
     }),
     ui: {
       isAccessAllowed: ({ session }): boolean => !!session?.data,

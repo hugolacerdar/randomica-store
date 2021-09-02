@@ -1,16 +1,32 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import Document, { Html, Head, NextScript, Main } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage((App) => (props) =>
-      sheet.collectStyles(<App {...props} />)
-    );
+    const originalRenderPage = ctx.renderPage;
 
-    const styleTags = sheet.getStyleElement();
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        });
 
-    return { ...page, styleTags };
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {

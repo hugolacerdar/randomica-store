@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
+import { useRef } from 'react';
 import useForm from '../lib/useForm';
 import Form from './styles/Form';
 import DisplayError from './ErrorMessage';
@@ -35,6 +36,8 @@ export default function CreateProduct() {
     description: 'best banana',
   });
 
+  const fileInputRef = useRef();
+
   const [createProduct, { loading, error, data }] = useMutation(
     CREATE_PRODUCT_MUTATION,
     {
@@ -47,7 +50,7 @@ export default function CreateProduct() {
       onSubmit={async (e) => {
         e.preventDefault();
         await createProduct();
-        clearForm();
+        clearForm(fileInputRef);
       }}
     >
       <DisplayError error={error} />
@@ -59,6 +62,7 @@ export default function CreateProduct() {
             type="file"
             id="image"
             name="image"
+            ref={fileInputRef}
             onChange={handleChange}
           />
         </label>

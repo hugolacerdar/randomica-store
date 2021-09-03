@@ -21,10 +21,11 @@ export default function useForm(initial = {}) {
     setInputs(initial);
   }
 
-  function clearForm() {
+  function clearForm(fileInputRef) {
     const blankState = Object.fromEntries(
       Object.entries(inputs).map(([key, value]) => [key, ''])
     );
+    fileInputRef.current.value = '';
     setInputs(blankState);
   }
 

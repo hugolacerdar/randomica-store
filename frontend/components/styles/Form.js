@@ -39,7 +39,7 @@ const Form = styled.form`
   button,
   input[type='submit'] {
     width: auto;
-    background: red;
+    background: peru;
     color: white;
     border: 0;
     font-size: 2rem;
@@ -59,9 +59,9 @@ const Form = styled.form`
       display: block;
       background-image: linear-gradient(
         to right,
-        #ff3019 0%,
-        #e2b04a 50%,
-        #ff3019 100%
+        #659fd7 0%,
+        #b2cfeb 50%,
+        #659fd7 100%
       );
     }
     &[aria-busy='true']::before {

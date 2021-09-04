@@ -1,8 +1,8 @@
 {
-  "name": "sick-fits-backend",
-  "version": "2.0.0",
+  "name": "randomica-backend",
+  "version": "1.0.0",
   "private": true,
-  "author": "Wes Bos",
+  "author": "Hugo Lacerda",
   "license": "MIT",
   "scripts": {
     "dev": "keystone-next",

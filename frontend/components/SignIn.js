@@ -47,7 +47,7 @@ export default function SignIn() {
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Sign In To Your Account</h2>
       <DisplayError error={error} />
-      <fieldset>
+      <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="email">
           Email
           <input
